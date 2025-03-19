@@ -76,7 +76,8 @@ const BrillpepsWebsite = () => {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <div className="max-w-8xl mx-auto px-6 sm:px-8 lg:px-12">
+      <div className="max-w-8xl mx-auto">
+        {/* <div className="max-w-8xl mx-auto px-6 sm:px-8 lg:px-12"> */}
         {/* Hero Section with Integrated Navigation */}
         <section
           className="relative overflow-hidden min-h-screen flex flex-col animated-section"
@@ -175,7 +176,8 @@ const BrillpepsWebsite = () => {
             >
               <h1 className="text-7xl md:text-8xl font-bold mb-8 leading-tight">
                 Adding <br />
-                Creativity<br /> Brilliantly
+                Creativity
+                <br /> Brilliantly
               </h1>
               <p className="text-xl md:text-3xl font-light max-w-2xl mx-auto md:mx-0 mb-12">
                 Strategic design & technology for tomorrow's digital experiences
@@ -361,7 +363,11 @@ const BrillpepsWebsite = () => {
         </section>
 
         {/* Work Portfolio Section - Keeping existing animation */}
-        <section id="case-studies" className="py-24" ref={containerRef}>
+        <section
+          id="case-studies"
+          className="py-24 px-6 sm:px-8 lg:px-12"
+          ref={containerRef}
+        >
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
             {images.map((img, index) => (
               <div
@@ -486,7 +492,7 @@ const BrillpepsWebsite = () => {
         </section>
 
         {/* Contact Us Section */}
-        <section id="contact" className="py-24 bg-black animated-section">
+        <section id="contact" className="py-24 bg-black animated-section px-6 sm:px-8 lg:px-12">
           <div className="max-w-5xl mx-auto">
             <div
               className={`transition-all duration-1000 ${
