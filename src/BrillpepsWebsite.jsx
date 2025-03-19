@@ -173,9 +173,9 @@ const BrillpepsWebsite = () => {
                   : "opacity-0 translate-y-10"
               }`}
             >
-              <h1 className="text-7xl md:text-9xl font-bold mb-8 leading-tight">
-                We help <br />
-                you grow
+              <h1 className="text-7xl md:text-8xl font-bold mb-8 leading-tight">
+                Adding <br />
+                Creativity<br /> Brilliantly
               </h1>
               <p className="text-xl md:text-3xl font-light max-w-2xl mx-auto md:mx-0 mb-12">
                 Strategic design & technology for tomorrow's digital experiences
