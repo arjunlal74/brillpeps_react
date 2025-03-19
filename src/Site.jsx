@@ -54,7 +54,8 @@ const AdCompanyWebsite = () => {
     <div className="min-h-screen bg-black text-white">
       {/* Container wrapper for the entire site */}
       <div className="max-w-8xl mx-auto px-6 sm:px-8 lg:px-12">
-        {" "}
+        {/* <div className="max-w-8xl mx-auto px-0 sm:px-0 lg:px-0"> */}
+
         {/* Increased container width and padding */}
         {/* Navigation */}
         <nav className="px-6 md:px-12 py-6 bg-black text-white sticky top-0 z-50 shadow-md">
@@ -136,69 +137,70 @@ const AdCompanyWebsite = () => {
           </div>
         </nav>
         {/* Hero Section */}
-        <section className="py-32 relative overflow-hidden">
-          {" "}
-          {/* Increased padding */}
-          <div className="max-w-5xl relative z-10">
-            {" "}
-            {/* Increased max width */}
-            <h1 className="text-9xl font-bold mb-6">
-              {" "}
-              {/* Increased text size and margin */}
+        <section className="py-32 relative overflow-hidden min-h-screen flex items-center justify-center">
+          <div className="max-w-6xl mx-auto px-6 relative z-10 text-center md:text-left">
+            <h1 className="text-7xl md:text-9xl font-bold mb-8 leading-tight">
               We help <br />
               you grow
             </h1>
-            {/* Enhanced minimalistic animation */}
-            <div className="absolute top-0 right-0 w-full h-full pointer-events-none">
-              {/* Gradient sphere */}
-              <div
-                className="absolute right-24 top-24 w-80 h-80 bg-gradient-to-br from-yellow-400 to-orange-500 opacity-20 rounded-full transform -translate-y-1/2 animate-pulse"
-                style={{ animationDuration: "6s" }}
-              ></div>
+            <p className="text-xl md:text-3xl font-light max-w-2xl mx-auto md:mx-0 mb-12">
+              Strategic design & technology for tomorrow's digital experiences
+            </p>
 
-              {/* Floating circles */}
-              <div
-                className="absolute right-48 top-40 w-20 h-20 bg-yellow-500 opacity-10 rounded-full animate-float"
-                style={{
-                  animationName: "float",
-                  animationDuration: "8s",
-                  animationIterationCount: "infinite",
-                }}
-              ></div>
-              <div
-                className="absolute right-16 bottom-32 w-32 h-32 border-4 border-yellow-400 opacity-30 rounded-full animate-float"
-                style={{
-                  animationName: "float",
-                  animationDuration: "10s",
-                  animationIterationCount: "infinite",
-                  animationDelay: "2s",
-                }}
-              ></div>
-
-              {/* Abstract shapes */}
-              <div
-                className="absolute right-72 bottom-16 w-40 h-10 bg-gradient-to-r from-yellow-300 to-yellow-500 opacity-20 rounded-full transform rotate-45 animate-float"
-                style={{
-                  animationName: "float",
-                  animationDuration: "12s",
-                  animationIterationCount: "infinite",
-                  animationDelay: "1s",
-                }}
-              ></div>
-              <div
-                className="absolute right-32 bottom-48 w-48 h-48 border-2 border-yellow-300 opacity-20 rounded-full animate-spin"
-                style={{ animationDuration: "15s" }}
-              ></div>
+            <div className="flex flex-wrap gap-6 justify-center md:justify-start">
+              <a
+                href="#services"
+                className="px-8 py-4 bg-transparent border-2 border-white text-white text-lg font-medium rounded-lg hover:bg-white hover:text-black transition-colors duration-300"
+              >
+                Our work
+              </a>
+              <a
+                href="#contact"
+                className="px-8 py-4 bg-white text-black text-lg font-medium rounded-lg hover:bg-transparent hover:text-white hover:border-white hover:border-2 transition-colors duration-300"
+              >
+                Get in touch
+              </a>
             </div>
           </div>
-          {/* Add the float animation keyframes */}
+
+          {/* Enhanced abstract background elements */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {/* Large gradient circle */}
+            <div className="absolute left-1/2 top-1/2 w-[800px] h-[800px] bg-gradient-to-br from-yellow-400/20 to-orange-500/10 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
+
+            {/* Decorative elements */}
+            <div
+              className="absolute right-1/4 top-1/4 w-64 h-64 border border-yellow-400/30 rounded-full animate-pulse"
+              style={{ animationDuration: "6s" }}
+            ></div>
+            <div
+              className="absolute left-1/4 bottom-1/4 w-40 h-40 border border-yellow-400/20 rounded-full animate-pulse"
+              style={{ animationDuration: "8s" }}
+            ></div>
+
+            {/* Floating small circles */}
+            <div
+              className="absolute right-1/3 top-1/3 w-16 h-16 bg-yellow-500/10 rounded-full animate-float"
+              style={{ animationDuration: "8s" }}
+            ></div>
+            <div
+              className="absolute left-1/3 bottom-1/3 w-24 h-24 border border-yellow-300/20 rounded-full animate-float"
+              style={{ animationDuration: "10s", animationDelay: "1s" }}
+            ></div>
+            <div
+              className="absolute right-1/4 bottom-1/4 w-32 h-32 border-2 border-yellow-400/10 rounded-full animate-float"
+              style={{ animationDuration: "12s", animationDelay: "2s" }}
+            ></div>
+          </div>
+
+          {/* Animation keyframes */}
           <style jsx>{`
             @keyframes float {
               0% {
                 transform: translateY(0px);
               }
               50% {
-                transform: translateY(-25px);
+                transform: translateY(-20px);
               }
               100% {
                 transform: translateY(0px);
@@ -206,7 +208,6 @@ const AdCompanyWebsite = () => {
             }
           `}</style>
         </section>
-
         {/* About Section */}
         <section id="about" className="py-24 bg-black text-white">
           <div className="max-w-5xl mx-auto px-6">
@@ -258,7 +259,6 @@ const AdCompanyWebsite = () => {
             </div>
           </div>
         </section>
-
         {/* Slogan Section */}
         <section className="py-24 bg-black text-white">
           <div className="max-w-5xl mx-auto px-6">
@@ -287,7 +287,6 @@ const AdCompanyWebsite = () => {
             </div>
           </div>
         </section>
-        
         <section className="py-24 text-center">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-5xl font-bold mb-10">
@@ -333,86 +332,90 @@ const AdCompanyWebsite = () => {
         </section>
         {/* Featured Work Section */}
         {/* Featured Work Section */}
+        {/* Featured Work Section */}
         <section id="services" className="py-24">
-          <div className="flex justify-between items-center mb-16">
-            <h2 className="text-6xl font-bold">Our work</h2>
-            <a href="#" className="underline text-xl hover:text-gray-300">
-              See all work
-            </a>
-          </div>
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="flex justify-between items-center mb-16">
+              <h2 className="text-6xl font-bold">Our work</h2>
+              <a href="#" className="underline text-xl hover:text-gray-300">
+                See all work
+              </a>
+            </div>
 
-          <div className="grid grid-cols-1 gap-24">
-            {/* Work Item 1 - Multiverse */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-              <div className="bg-gray-100 rounded-xl p-10 flex items-center justify-center">
-                <div className="text-center">
-                  <h3 className="text-indigo-900 text-5xl font-bold">
-                    multiverse
+            <div className="grid grid-cols-1 gap-24">
+              {/* Work Item 1 - Multiverse */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div className="bg-gray-100 rounded-xl p-10 flex items-center justify-center h-80">
+                  <div className="text-center">
+                    <h3 className="text-indigo-900 text-5xl font-bold">
+                      multiverse
+                    </h3>
+                    <div className="h-2 w-32 bg-yellow-500 mx-auto mt-3"></div>
+                    <div className="h-2 w-20 bg-pink-500 mx-auto mt-3"></div>
+                  </div>
+                </div>
+                <div className="flex flex-col justify-center">
+                  <p className="text-gray-400 text-lg mb-2">
+                    Education Technology
+                  </p>
+                  <h3 className="text-3xl font-bold mb-4">
+                    Reimagining apprenticeships for the digital age
                   </h3>
-                  <div className="h-2 w-32 bg-yellow-500 mx-auto mt-3"></div>
-                  <div className="h-2 w-20 bg-pink-500 mx-auto mt-3"></div>
+                  <p className="text-lg text-gray-300">
+                    We partnered with Multiverse to create a platform that
+                    connects ambitious non-graduates with outstanding
+                    apprenticeship opportunities, revolutionizing the way
+                    companies approach talent acquisition.
+                  </p>
                 </div>
               </div>
-              <div className="flex flex-col justify-center">
-                <p className="text-gray-400 text-lg mb-2">
-                  Education Technology
-                </p>
-                <h3 className="text-3xl font-bold mb-4">
-                  Reimagining apprenticeships for the digital age
-                </h3>
-                <p className="text-lg text-gray-300">
-                  We partnered with Multiverse to create a platform that
-                  connects ambitious non-graduates with outstanding
-                  apprenticeship opportunities, revolutionizing the way
-                  companies approach talent acquisition.
-                </p>
-              </div>
-            </div>
 
-            {/* Work Item 2 - CAVA */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-              <div className="bg-gray-100 rounded-xl overflow-hidden">
-                <img
-                  src="/api/placeholder/700/500"
-                  alt="CAVA food"
-                  className="w-full h-full object-cover"
-                />
+              {/* Work Item 2 - CAVA */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div className="bg-gray-100 rounded-xl overflow-hidden h-80">
+                  <img
+                    src="/api/placeholder/400/300"
+                    alt="CAVA food"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <div className="flex flex-col justify-center">
+                  <p className="text-gray-400 text-lg mb-2">CAVA</p>
+                  <h3 className="text-3xl font-bold mb-4">
+                    Transforming the fast-casual dining experience through
+                    digital innovation
+                  </h3>
+                  <p className="text-lg text-gray-300">
+                    We helped CAVA create a seamless digital ordering experience
+                    that reflects their commitment to fresh, authentic
+                    Mediterranean cuisine while driving significant growth in
+                    their customer base.
+                  </p>
+                </div>
               </div>
-              <div className="flex flex-col justify-center">
-                <p className="text-gray-400 text-lg mb-2">CAVA</p>
-                <h3 className="text-3xl font-bold mb-4">
-                  Transforming the fast-casual dining experience through digital
-                  innovation
-                </h3>
-                <p className="text-lg text-gray-300">
-                  We helped CAVA create a seamless digital ordering experience
-                  that reflects their commitment to fresh, authentic
-                  Mediterranean cuisine while driving significant growth in
-                  their customer base.
-                </p>
-              </div>
-            </div>
 
-            {/* Work Item 3 - Colgate */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-              <div className="bg-red-500 rounded-xl overflow-hidden p-6">
-                <img
-                  src="/api/placeholder/700/500"
-                  alt="Smart toothbrushes"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="flex flex-col justify-center">
-                <p className="text-gray-400 text-lg mb-2">Colgate</p>
-                <h3 className="text-3xl font-bold mb-4">
-                  Service experience vision for the world's smartest toothbrush
-                </h3>
-                <p className="text-lg text-gray-300">
-                  We collaborated with Colgate to develop a revolutionary smart
-                  toothbrush experience that combines cutting-edge technology
-                  with intuitive design, helping users improve their oral health
-                  habits.
-                </p>
+              {/* Work Item 3 - Colgate */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div className="bg-red-500 rounded-xl overflow-hidden p-6 h-80">
+                  <img
+                    src="/api/placeholder/400/300"
+                    alt="Smart toothbrushes"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <div className="flex flex-col justify-center">
+                  <p className="text-gray-400 text-lg mb-2">Colgate</p>
+                  <h3 className="text-3xl font-bold mb-4">
+                    Service experience vision for the world's smartest
+                    toothbrush
+                  </h3>
+                  <p className="text-lg text-gray-300">
+                    We collaborated with Colgate to develop a revolutionary
+                    smart toothbrush experience that combines cutting-edge
+                    technology with intuitive design, helping users improve
+                    their oral health habits.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -514,54 +517,115 @@ const AdCompanyWebsite = () => {
           </div>
         </section>
         {/* Footer */}
-        <footer className="py-24 border-t border-gray-800">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-            <div className="col-span-1 md:col-span-2">
-              <h3 className="text-2xl font-bold mb-6">Made By Many</h3>
-              <p className="text-gray-400 text-lg">
-                An independent, award-winning, strategic design & technology
-                studio.
+        <footer className="bg-gray-900 text-gray-400 py-20 border-t border-gray-800">
+          <div className="container mx-auto px-6 lg:px-16">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+              {/* Brand Section */}
+              <div className="md:col-span-2">
+                <h3 className="text-3xl font-bold text-white mb-6">
+                  Made By Many
+                </h3>
+                <p className="text-lg">
+                  An independent, award-winning, strategic design & technology
+                  studio creating meaningful digital experiences.
+                </p>
+              </div>
+
+              {/* Quick Links */}
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-6">
+                  Quick Links
+                </h3>
+                <ul className="space-y-3 text-lg">
+                  <li>
+                    <a href="#" className="hover:text-white transition">
+                      Home
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="hover:text-white transition">
+                      About Us
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="hover:text-white transition">
+                      Services
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="hover:text-white transition">
+                      Blog
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="hover:text-white transition">
+                      Contact
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Contact Section */}
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-6">Contact</h3>
+                <address className="not-italic text-lg">
+                  <p>123 Creative St., London, UK</p>
+                  <p className="mt-3">
+                    <a
+                      href="mailto:hello@madebymany.com"
+                      className="hover:text-white transition"
+                    >
+                      hello@madebymany.com
+                    </a>
+                  </p>
+                  <p>+44 123 456 789</p>
+                </address>
+              </div>
+            </div>
+
+            {/* Newsletter Section */}
+            <div className="mt-16 border-t border-gray-800 pt-10 flex flex-col md:flex-row md:justify-between items-center">
+              <div className="mb-6 md:mb-0 text-center md:text-left">
+                <h3 className="text-2xl font-bold text-white">Stay Updated</h3>
+                <p className="text-lg">
+                  Subscribe to our newsletter for the latest updates.
+                </p>
+              </div>
+              <form className="flex w-full md:w-auto">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="px-4 py-3 rounded-l-md text-gray-900 w-full md:w-64"
+                />
+                <button
+                  type="submit"
+                  className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-r-md font-semibold"
+                >
+                  Subscribe
+                </button>
+              </form>
+            </div>
+
+            {/* Socials & Copyright */}
+            <div className="mt-10 flex flex-col md:flex-row md:justify-between items-center text-center text-lg">
+              <div className="flex space-x-6">
+                <a href="#" className="hover:text-white transition">
+                  LinkedIn
+                </a>
+                <a href="#" className="hover:text-white transition">
+                  Twitter
+                </a>
+                <a href="#" className="hover:text-white transition">
+                  Instagram
+                </a>
+                <a href="#" className="hover:text-white transition">
+                  Dribbble
+                </a>
+              </div>
+              <p className="mt-6 md:mt-0">
+                &copy; 2025 Made By Many. All rights reserved.
               </p>
             </div>
-            <div>
-              <h3 className="text-2xl font-bold mb-6">Connect</h3>
-              <ul className="space-y-3 text-gray-400 text-lg">
-                <li>
-                  <a href="#" className="hover:text-white">
-                    LinkedIn
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white">
-                    Twitter
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white">
-                    Instagram
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-2xl font-bold mb-6">Contact</h3>
-              <address className="not-italic text-gray-400 text-lg">
-                <p>Made By Many</p>
-                <p>123 Creative St.</p>
-                <p>London, UK</p>
-                <p className="mt-3">
-                  <a
-                    href="mailto:hello@madebymany.com"
-                    className="hover:text-white"
-                  >
-                    hello@madebymany.com
-                  </a>
-                </p>
-              </address>
-            </div>
-          </div>
-          <div className="mt-16 text-gray-400 text-base">
-            <p>&copy; 2025 Made By Many. All rights reserved.</p>
           </div>
         </footer>
       </div>
