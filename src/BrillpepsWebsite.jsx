@@ -93,7 +93,7 @@ const BrillpepsWebsite = () => {
                     className="relative inline-block overflow-hidden group flex items-center"
                   >
                     <img
-                      src="/images/logo-white.svg"
+                      src="/images/logo-white.png"
                       alt="Logo"
                       className="w-32 h-auto md:w-30"
                     />
