@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState, useRef } from "react";
+import WeSpecializeIn from "./WeSpecializeIn";
 
 const BrillpepsWebsite = () => {
   const images = [
@@ -298,6 +299,9 @@ const BrillpepsWebsite = () => {
           </div>
         </section>
 
+        {/* We Specialize In Section */}
+        <WeSpecializeIn />
+
         {/* Slogan Section */}
         <section
           className="py-24 bg-black text-white animated-section"
@@ -492,7 +496,10 @@ const BrillpepsWebsite = () => {
         </section>
 
         {/* Contact Us Section */}
-        <section id="contact" className="py-24 bg-black animated-section px-6 sm:px-8 lg:px-12">
+        <section
+          id="contact"
+          className="py-24 bg-black animated-section px-6 sm:px-8 lg:px-12"
+        >
           <div className="max-w-5xl mx-auto">
             <div
               className={`transition-all duration-1000 ${
