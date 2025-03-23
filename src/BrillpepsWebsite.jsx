@@ -10,7 +10,7 @@ const BrillpepsWebsite = () => {
     },
     { src: "/images/SAM_0351.JPG", alt: "Web design for e-commerce" },
     { src: "/images/Picture 002.jpg", alt: "Mobile app interface design" },
-    { src: "/images/SAM_0351.JPG", alt: "Product packaging design" },
+    { src: "/images/SAM_0287.JPG", alt: "Product packaging design" },
     { src: "/images/Picture 003.jpg", alt: "Brand identity project" },
     { src: "/images/100_1798.jpg", alt: "Digital marketing campaign" },
     { src: "/images/07012009773.jpg", alt: "Website redesign project" },
@@ -24,6 +24,27 @@ const BrillpepsWebsite = () => {
 
   // Add state for visible sections
   const [visibleSections, setVisibleSections] = useState({});
+
+  // Create refs for sections we want to scroll to
+  const heroRef = useRef(null);
+  const aboutRef = useRef(null);
+  const worksRef = useRef(null);
+  const contactRef = useRef(null);
+
+  // Add menu state
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Function to handle smooth scrolling
+  const scrollToSection = (elementRef) => {
+    if (elementRef && elementRef.current) {
+      window.scrollTo({
+        top: elementRef.current.offsetTop,
+        behavior: "smooth",
+      });
+      // Close mobile menu after navigation
+      setIsMenuOpen(false);
+    }
+  };
 
   useEffect(() => {
     // Observer for portfolio items (existing functionality)
@@ -44,7 +65,7 @@ const BrillpepsWebsite = () => {
     const elements = containerRef.current.querySelectorAll(".fade-item");
     elements.forEach((el) => itemObserver.observe(el));
 
-    // New observer for sections
+    // New observer for sections with lower threshold for earlier trigger
     const sectionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -56,7 +77,7 @@ const BrillpepsWebsite = () => {
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.1 } // Lower threshold to trigger animations earlier
     );
 
     // Observe all sections with animated class
@@ -69,8 +90,6 @@ const BrillpepsWebsite = () => {
     };
   }, []);
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -78,19 +97,19 @@ const BrillpepsWebsite = () => {
   return (
     <div className="min-h-screen bg-black text-white">
       <div className="max-w-8xl mx-auto">
-        {/* <div className="max-w-8xl mx-auto px-6 sm:px-8 lg:px-12"> */}
         {/* Hero Section with Integrated Navigation */}
         <section
           className="relative overflow-hidden min-h-screen flex flex-col animated-section"
           id="hero"
+          ref={heroRef}
         >
           {/* Navigation integrated within hero */}
           <nav className="px-6 md:px-12 py-6 text-white relative z-50">
             <div className="max-w-7xl mx-auto flex justify-between items-center">
               <div className="flex items-center">
                 <h1 className="text-2xl font-bold">
-                  <a
-                    href="#"
+                  <button
+                    onClick={() => scrollToSection(heroRef)}
                     className="relative inline-block overflow-hidden group flex items-center"
                   >
                     <img
@@ -98,7 +117,7 @@ const BrillpepsWebsite = () => {
                       alt="Logo"
                       className="w-32 h-auto md:w-30"
                     />
-                  </a>
+                  </button>
                 </h1>
               </div>
 
@@ -127,19 +146,30 @@ const BrillpepsWebsite = () => {
 
               {/* Desktop Menu */}
               <div className="hidden md:flex space-x-8">
-                {["About", "Services", "Case studies", "Events", "Contact"].map(
-                  (item) => (
-                    <a
-                      key={item}
-                      href={`#${item.toLowerCase().replace(" ", "-")}`}
-                      className="text-lg relative overflow-hidden group py-2"
-                    >
-                      <span className="relative inline-block pb-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-blue-500 after:transition-all after:duration-300 group-hover:after:w-full">
-                        {item}
-                      </span>
-                    </a>
-                  )
-                )}
+                <button
+                  onClick={() => scrollToSection(aboutRef)}
+                  className="text-lg relative overflow-hidden group py-2"
+                >
+                  <span className="relative inline-block pb-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-blue-500 after:transition-all after:duration-300 group-hover:after:w-full">
+                    About
+                  </span>
+                </button>
+                <button
+                  onClick={() => scrollToSection(worksRef)}
+                  className="text-lg relative overflow-hidden group py-2"
+                >
+                  <span className="relative inline-block pb-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-blue-500 after:transition-all after:duration-300 group-hover:after:w-full">
+                    Our works
+                  </span>
+                </button>
+                <button
+                  onClick={() => scrollToSection(contactRef)}
+                  className="text-lg relative overflow-hidden group py-2"
+                >
+                  <span className="relative inline-block pb-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-blue-500 after:transition-all after:duration-300 group-hover:after:w-full">
+                    Contact
+                  </span>
+                </button>
               </div>
             </div>
 
@@ -150,18 +180,24 @@ const BrillpepsWebsite = () => {
               }`}
             >
               <div className="flex flex-col space-y-4 pt-2">
-                {["About", "Services", "Case studies", "Events", "Contact"].map(
-                  (item) => (
-                    <a
-                      key={item}
-                      href={`#${item.toLowerCase().replace(" ", "-")}`}
-                      className="text-lg px-4 py-2 hover:bg-gray-800 transition-colors duration-200 rounded"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {item}
-                    </a>
-                  )
-                )}
+                <button
+                  onClick={() => scrollToSection(aboutRef)}
+                  className="text-lg px-4 py-2 hover:bg-gray-800 transition-colors duration-200 rounded text-left"
+                >
+                  About
+                </button>
+                <button
+                  onClick={() => scrollToSection(worksRef)}
+                  className="text-lg px-4 py-2 hover:bg-gray-800 transition-colors duration-200 rounded text-left"
+                >
+                  Our works
+                </button>
+                <button
+                  onClick={() => scrollToSection(contactRef)}
+                  className="text-lg px-4 py-2 hover:bg-gray-800 transition-colors duration-200 rounded text-left"
+                >
+                  Contact
+                </button>
               </div>
             </div>
           </nav>
@@ -169,7 +205,7 @@ const BrillpepsWebsite = () => {
           {/* Hero Content */}
           <div className="flex-1 flex items-center justify-center">
             <div
-              className={`max-w-6xl mx-auto px-6 relative z-10 text-center md:text-left transition-all duration-1000 ${
+              className={`max-w-6xl mx-auto px-6 relative z-10 text-center md:text-left transition-all duration-1500 ${
                 visibleSections["hero"]
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-10"
@@ -181,22 +217,23 @@ const BrillpepsWebsite = () => {
                 <br /> Brilliantly
               </h1>
               <p className="text-xl md:text-3xl font-light max-w-2xl mx-auto md:mx-0 mb-12">
-                Strategic design & technology for tomorrow's digital experiences
+                Transforming brand visions into impactful visual experiences
+                that resonate and deliver results
               </p>
 
               <div className="flex flex-wrap gap-6 justify-center md:justify-start">
-                <a
-                  href="#services"
+                <button
+                  onClick={() => scrollToSection(worksRef)}
                   className="px-8 py-4 bg-transparent border-2 border-blue-500 text-blue-500 text-lg font-medium rounded-lg hover:bg-blue-500 hover:text-black transition-colors duration-300"
                 >
-                  Our work
-                </a>
-                <a
-                  href="#contact"
+                  Brochure
+                </button>
+                <button
+                  onClick={() => scrollToSection(contactRef)}
                   className="px-8 py-4 bg-blue-500 text-black text-lg font-medium rounded-lg hover:bg-transparent hover:text-blue-500 hover:border-blue-500 hover:border-2 transition-colors duration-300"
                 >
                   Get in touch
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -236,10 +273,11 @@ const BrillpepsWebsite = () => {
         <section
           id="about"
           className="py-24 bg-black text-white animated-section"
+          ref={aboutRef}
         >
-          <div className="max-w-5xl mx-auto px-6">
+          <div className="max-w-6xl mx-auto px-6">
             <div
-              className={`grid grid-cols-1 md:grid-cols-2 gap-16 transition-all duration-1000 ${
+              className={`grid grid-cols-1 md:grid-cols-2 gap-16 transition-all duration-1500 ${
                 visibleSections["about"]
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-10"
@@ -251,15 +289,20 @@ const BrillpepsWebsite = () => {
                   <span className="block h-1 w-16 bg-blue-500 mt-4"></span>
                 </h2>
                 <p className="text-2xl font-light mb-8">
-                  Brillpeps is an independent, award-winning, strategic design &
-                  technology studio. We partner with Fortune 500 companies,
-                  global NGOs & leading start-ups to create groundbreaking
-                  digital products & experiences.
+                  BRILLPEPS LLP is a full-service digital solutions company
+                  combining technical expertise with creative excellence. From
+                  traditional media campaigns including TV and radio commercials
+                  to comprehensive digital marketing solutions, we deliver
+                  integrated advertising strategies that connect with customers
+                  across all touchpoints. Our expertise extends to in-store and
+                  outdoor communication, as well as point-of-purchase and
+                  point-of-sale solutions that drive conversion.
                 </p>
                 <p className="text-lg text-white-700 mb-8">
-                  Our multidisciplinary team combines strategic thinking, design
-                  excellence, and technical innovation to solve complex
-                  challenges and create meaningful digital solutions.
+                  At BRILLPEPS, customer satisfaction is our ultimate goal. We
+                  approach every project with professionalism and dedication,
+                  ensuring that our solutions not only meet but exceed your
+                  expectations.
                 </p>
                 <div className="flex flex-wrap gap-4 mt-8">
                   <span className="px-4 py-2 border border-blue-500 text-sm">
@@ -277,21 +320,21 @@ const BrillpepsWebsite = () => {
                 <div className="grid grid-cols-1 gap-6">
                   <div className="flex items-center">
                     <span className="text-4xl font-bold mr-4 text-blue-500">
-                      15+
+                      100%
                     </span>
-                    <span className="text-lg">Years of digital innovation</span>
+                    <span className="text-lg">Client satisfaction</span>
                   </div>
                   <div className="flex items-center">
                     <span className="text-4xl font-bold mr-4 text-blue-500">
-                      100+
+                      Growing
                     </span>
-                    <span className="text-lg">Clients worldwide</span>
+                    <span className="text-lg"> portfolio of success</span>
                   </div>
                   <div className="flex items-center">
                     <span className="text-4xl font-bold mr-4 text-blue-500">
-                      40+
+                      Diverse
                     </span>
-                    <span className="text-lg">Industry awards</span>
+                    <span className="text-lg">client partnerships</span>
                   </div>
                 </div>
               </div>
@@ -307,34 +350,32 @@ const BrillpepsWebsite = () => {
           className="py-24 bg-black text-white animated-section"
           id="slogan"
         >
-          <div className="max-w-5xl mx-auto px-6">
+          <div className="max-w-6xl mx-auto px-6">
             <div
-              className={`grid grid-cols-1 md:grid-cols-5 gap-12 transition-all duration-1000 ${
+              className={`grid grid-cols-1 md:grid-cols-5 gap-12 transition-all duration-1500 ${
                 visibleSections["slogan"]
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-10"
               }`}
             >
               <div className="md:col-span-3">
-                <h2 className="text-7xl font-bold mb-6 leading-tight">
-                  Making new stuff <br />
-                  out of the internet <br />
-                  since 2007
+                <h2 className="text-6xl font-bold mb-6 leading-tight">
+                  Creating Memorable Brand Experiences Since Our Inception
                   <span className="block h-2 w-32 bg-blue-500 mt-6"></span>
                 </h2>
               </div>
               <div className="md:col-span-2 flex flex-col justify-center">
                 <p className="text-xl mb-8">
-                  For over 15 years, we've been at the forefront of digital
-                  innovation, helping organizations transform their businesses
-                  through thoughtful design and technology.
+                  We transform brand visions into impactful realities through
+                  innovative design and strategic implementation across digital
+                  and physical spaces.
                 </p>
-                <a
-                  href="#case-studies"
+                <button
+                  onClick={() => scrollToSection(worksRef)}
                   className="inline-block border-2 border-blue-500 px-8 py-4 text-lg font-medium hover:bg-blue-500 hover:text-black transition-colors duration-300"
                 >
                   View our work
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -342,26 +383,24 @@ const BrillpepsWebsite = () => {
 
         {/* Experience Section */}
         <section className="py-24 text-center animated-section" id="experience">
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-6xl mx-auto px-6">
             <div
-              className={`transition-all duration-1000 ${
+              className={`transition-all duration-1500 ${
                 visibleSections["experience"]
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-10"
               }`}
             >
               <h2 className="text-5xl font-bold mb-10">
-                Over the past 17 years we've helped more than 120 organisations
-                create breakthrough innovation, digital products, services and
-                tools.
+                Crafting Breakthrough Brand Solutions For Diverse Clients
                 <span className="block h-2 w-48 bg-blue-500 mt-4 mx-auto"></span>
               </h2>
-              <a
-                href="#case-studies"
+              <button
+                onClick={() => scrollToSection(worksRef)}
                 className="underline text-2xl hover:text-blue-500"
               >
                 Have a look at some of our case studies
-              </a>
+              </button>
             </div>
           </div>
         </section>
@@ -369,7 +408,7 @@ const BrillpepsWebsite = () => {
         {/* Work Portfolio Section - Keeping existing animation */}
         <section
           id="case-studies"
-          className="py-24 px-6 sm:px-8 lg:px-12"
+          className="py-24 px-6 mx-auto"
           ref={containerRef}
         >
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
@@ -399,23 +438,21 @@ const BrillpepsWebsite = () => {
         </section>
 
         {/* Featured Work Section */}
-        <section id="services" className="py-24 text-white animated-section">
+        <section
+          id="services"
+          className="py-24 text-white animated-section"
+          ref={worksRef}
+        >
           <div className="max-w-6xl mx-auto px-6">
             <div
-              className={`transition-all duration-1000 ${
+              className={`transition-all duration-1500 ${
                 visibleSections["services"]
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-10"
               }`}
             >
               <div className="flex justify-between items-center mb-16">
-                <h2 className="text-6xl font-bold">Our work</h2>
-                <a
-                  href="#"
-                  className="underline text-xl hover:text-blue-500 transition-colors duration-300"
-                >
-                  See all work
-                </a>
+                <h2 className="text-6xl font-bold">Our works</h2>
               </div>
 
               <div className="grid grid-cols-1 gap-24">
@@ -423,22 +460,23 @@ const BrillpepsWebsite = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                   <div className="bg-gray-100 rounded-xl overflow-hidden h-80 relative">
                     <img
-                      src="/images/work/SAM_0308.JPG"
+                      src="/images/work/abudhabi-film.jpg"
                       alt="CAVA food"
                       className="absolute inset-0 w-full h-full object-cover"
                     />
                   </div>
                   <div className="flex flex-col justify-center">
-                    <p className="text-blue-500 text-lg mb-2">CAVA</p>
+                    <p className="text-blue-500 text-lg mb-2">Events</p>
                     <h3 className="text-3xl font-bold mb-4">
-                      Transforming the fast-casual dining experience through
-                      digital innovation
+                      From concept to execution, we bring your event brand to
+                      life through custom signage, display panels, and branded
+                      environments.
                     </h3>
                     <p className="text-lg text-gray-300">
-                      We helped CAVA create a seamless digital ordering
-                      experience that reflects their commitment to fresh,
-                      authentic Mediterranean cuisine while driving significant
-                      growth in their customer base.
+                      We handle everything from design concept to on-site
+                      installation, ensuring your event branding creates a
+                      strong visual presence that leaves a lasting impression on
+                      attendees.
                     </p>
                   </div>
                 </div>
@@ -447,22 +485,23 @@ const BrillpepsWebsite = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                   <div className="bg-gray-100 rounded-xl overflow-hidden h-80 relative">
                     <img
-                      src="/images/work/SAM_0288.JPG"
+                      src="/images/work/instore-branding.JPG"
                       alt="CAVA food"
                       className="absolute inset-0 w-full h-full object-cover"
                     />
                   </div>
                   <div className="flex flex-col justify-center">
-                    <p className="text-blue-500 text-lg mb-2">CAVA</p>
+                    <p className="text-blue-500 text-lg mb-2">
+                      In Store Branding
+                    </p>
                     <h3 className="text-3xl font-bold mb-4">
-                      Transforming the fast-casual dining experience through
-                      digital innovation
+                      Eye-catching promotional displays and signage that command
+                      attention in retail environments.
                     </h3>
                     <p className="text-lg text-gray-300">
-                      We helped CAVA create a seamless digital ordering
-                      experience that reflects their commitment to fresh,
-                      authentic Mediterranean cuisine while driving significant
-                      growth in their customer base.
+                      We design and produce impactful branded materials that
+                      effectively communicate your message to customers at the
+                      point of purchase.
                     </p>
                   </div>
                 </div>
@@ -471,22 +510,94 @@ const BrillpepsWebsite = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                   <div className="bg-gray-100 rounded-xl overflow-hidden h-80 relative">
                     <img
-                      src="/images/work/IMG_6817.JPG"
+                      src="/images/work/pops.jpg"
                       alt="CAVA food"
                       className="absolute inset-0 w-full h-full object-cover"
                     />
                   </div>
                   <div className="flex flex-col justify-center">
-                    <p className="text-blue-500 text-lg mb-2">CAVA</p>
+                    <p className="text-blue-500 text-lg mb-2">Pop & Posm</p>
                     <h3 className="text-3xl font-bold mb-4">
-                      Transforming the fast-casual dining experience through
-                      digital innovation
+                      Strategic point-of-purchase displays and point-of-sale
+                      materials that drive consumer action.
                     </h3>
                     <p className="text-lg text-gray-300">
-                      We helped CAVA create a seamless digital ordering
-                      experience that reflects their commitment to fresh,
-                      authentic Mediterranean cuisine while driving significant
-                      growth in their customer base.
+                      We create attention-grabbing retail solutions that enhance
+                      brand visibility and influence purchasing decisions right
+                      where it matters most.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Work Item 4 */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                  <div className="bg-gray-100 rounded-xl overflow-hidden h-80 relative">
+                    <img
+                      src="/images/work/exhibitions.jpg"
+                      alt="CAVA food"
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="flex flex-col justify-center">
+                    <p className="text-blue-500 text-lg mb-2">Exhibitions</p>
+                    <h3 className="text-3xl font-bold mb-4">
+                      Custom exhibition stands and displays that make your brand
+                      stand out at trade shows and industry events.
+                    </h3>
+                    <p className="text-lg text-gray-300">
+                      We design and deliver immersive exhibition experiences
+                      that attract visitors and effectively communicate your
+                      brand message in competitive environments.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Work Item 5 */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                  <div className="bg-gray-100 rounded-xl overflow-hidden h-80 relative">
+                    <img
+                      src="/images/work/red.jpg"
+                      alt="CAVA food"
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="flex flex-col justify-center">
+                    <p className="text-blue-500 text-lg mb-2">Red Carpet</p>
+                    <h3 className="text-3xl font-bold mb-4">
+                      Elegant and sophisticated red carpet event branding that
+                      creates memorable celebrity and VIP experiences.
+                    </h3>
+                    <p className="text-lg text-gray-300">
+                      We design and produce premium event backdrops,
+                      step-and-repeat banners, and entrance displays that
+                      provide the perfect setting for high-profile appearances
+                      and photo opportunities.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Work Item 6 */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                  <div className="bg-gray-100 rounded-xl overflow-hidden h-80 relative">
+                    <img
+                      src="/images/work/brand-activations.jpg"
+                      alt="CAVA food"
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="flex flex-col justify-center">
+                    <p className="text-blue-500 text-lg mb-2">
+                      Brand Activations
+                    </p>
+                    <h3 className="text-3xl font-bold mb-4">
+                      Immersive brand experiences that create meaningful
+                      connections between consumers and your brand.
+                    </h3>
+                    <p className="text-lg text-gray-300">
+                      We conceptualize and execute engaging activation campaigns
+                      that bring your brand to life through interactive
+                      installations, sampling events, and memorable consumer
+                      touchpoints.
                     </p>
                   </div>
                 </div>
@@ -498,17 +609,18 @@ const BrillpepsWebsite = () => {
         {/* Contact Us Section */}
         <section
           id="contact"
-          className="py-24 bg-black animated-section px-6 sm:px-8 lg:px-12"
+          className="py-24 bg-black animated-section"
+          ref={contactRef}
         >
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-6xl mx-auto px-6">
             <div
-              className={`transition-all duration-1000 ${
+              className={`transition-all duration-1500 ${
                 visibleSections["contact"]
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-10"
               }`}
             >
-              <h2 className="text-7xl font-bold mb-12 text-center">
+              <h2 className="text-6xl font-bold mb-12 text-center">
                 Let's create
                 <br />
                 something great
@@ -530,7 +642,7 @@ const BrillpepsWebsite = () => {
                       href="mailto:hello@brillpeps.com"
                       className="text-2xl text-blue-500 hover:underline transition-colors"
                     >
-                      hello@brillpeps.com
+                      sales@brillpeps.com
                     </a>
 
                     <p className="text-gray-400 text-xl mt-8 mb-2">Call us:</p>
@@ -538,7 +650,7 @@ const BrillpepsWebsite = () => {
                       href="tel:+44123456789"
                       className="text-2xl text-blue-500 hover:underline transition-colors"
                     >
-                      +44 123 456 789
+                      +91-9188015979
                     </a>
                   </div>
                 </div>
@@ -605,10 +717,10 @@ const BrillpepsWebsite = () => {
 
         {/* Footer */}
         <footer
-          className="bg-gray-900 text-gray-400 py-20 border-t border-gray-800 animated-section"
+          className="bg-gray-900 text-gray-400 py-12 md:px-44 border-t border-gray-800 animated-section"
           id="footer"
         >
-          <div className="container mx-auto px-6 lg:px-16">
+          <div className="container mx-auto px-6 lg:px-10">
             <div
               className={`transition-all duration-1000 ${
                 visibleSections["footer"]
@@ -616,34 +728,27 @@ const BrillpepsWebsite = () => {
                   : "opacity-0 translate-y-10"
               }`}
             >
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Brand Section */}
-                <div className="md:col-span-2">
-                  <h3 className="text-3xl font-bold text-white mb-6 flex items-center">
-                    <span className="text-blue-500 mr-2">
-                      {/* Simplified Hex Logo */}
-                      <svg viewBox="0 0 50 50" width="30" height="30">
-                        <polygon
-                          points="25,5 45,17.5 45,32.5 25,45 5,32.5 5,17.5"
-                          fill="#0099dd"
-                          strokeWidth="2"
-                        />
-                      </svg>
-                    </span>
-                    Brillpeps
-                  </h3>
-                  <p className="text-lg">
-                    An independent, award-winning, strategic design & technology
-                    studio creating meaningful digital experiences.
+                <div>
+                  <a
+                    href="#"
+                    className="relative inline-block overflow-hidden group flex items-center"
+                  >
+                    <img
+                      src="/images/logo-white.png"
+                      alt="Logo"
+                      className="w-24 h-auto"
+                    />
+                  </a>
+                  <p className="text-base mt-2">
+                    Adding Creativity Brilliantly
                   </p>
                 </div>
 
                 {/* Quick Links */}
-                <div>
-                  <h3 className="text-2xl font-bold text-white mb-6">
-                    Quick Links
-                  </h3>
-                  <ul className="space-y-3 text-lg">
+                <div className="flex justify-end">
+                  <ul className="flex flex-wrap gap-6 text-base">
                     <li>
                       <a href="#" className="hover:text-blue-500 transition">
                         Home
@@ -651,75 +756,21 @@ const BrillpepsWebsite = () => {
                     </li>
                     <li>
                       <a href="#" className="hover:text-blue-500 transition">
-                        About Us
+                        About
                       </a>
                     </li>
                     <li>
                       <a href="#" className="hover:text-blue-500 transition">
-                        Services
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className="hover:text-blue-500 transition">
-                        Blog
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className="hover:text-blue-500 transition">
-                        Contact
+                        Our Works
                       </a>
                     </li>
                   </ul>
                 </div>
-
-                {/* Contact Section */}
-                <div>
-                  <h3 className="text-2xl font-bold text-white mb-6">
-                    Contact
-                  </h3>
-                  <address className="not-italic text-lg">
-                    <p>123 Tech Plaza, London, UK</p>
-                    <p className="mt-3">
-                      <a
-                        href="mailto:hello@brillpeps.com"
-                        className="hover:text-blue-500 transition"
-                      >
-                        hello@brillpeps.com
-                      </a>
-                    </p>
-                    <p>+44 123 456 789</p>
-                  </address>
-                </div>
-              </div>
-
-              {/* Newsletter Section */}
-              <div className="mt-16 border-t border-gray-800 pt-10 flex flex-col md:flex-row md:justify-between items-center">
-                <div className="mb-6 md:mb-0 text-center md:text-left">
-                  <h3 className="text-2xl font-bold text-white">
-                    Stay Updated
-                  </h3>
-                  <p className="text-lg">
-                    Subscribe to our newsletter for the latest updates.
-                  </p>
-                </div>
-                <form className="flex w-full md:w-auto">
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    className="px-4 py-3 rounded-l-md text-gray-900 w-full md:w-64"
-                  />
-                  <button
-                    type="submit"
-                    className="bg-blue-500 hover:bg-blue-600 text-black px-6 py-3 rounded-r-md font-semibold"
-                  >
-                    Subscribe
-                  </button>
-                </form>
               </div>
 
               {/* Socials & Copyright */}
-              <div className="mt-10 flex flex-col md:flex-row md:justify-between items-center text-center text-lg">
-                <div className="flex space-x-6">
+              <div className="mt-8 pt-6 border-t border-gray-800 flex flex-col md:flex-row md:justify-between items-center text-sm">
+                <div className="flex space-x-4">
                   <a href="#" className="hover:text-blue-500 transition">
                     LinkedIn
                   </a>
@@ -729,11 +780,8 @@ const BrillpepsWebsite = () => {
                   <a href="#" className="hover:text-blue-500 transition">
                     Instagram
                   </a>
-                  <a href="#" className="hover:text-blue-500 transition">
-                    Dribbble
-                  </a>
                 </div>
-                <p className="mt-6 md:mt-0">
+                <p className="mt-4 md:mt-0">
                   &copy; 2025 Brillpeps. All rights reserved.
                 </p>
               </div>

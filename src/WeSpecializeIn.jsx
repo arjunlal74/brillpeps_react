@@ -3,32 +3,30 @@ import React, { useState, useEffect } from "react";
 const WeSpecializeIn = () => {
   const specializations = [
     {
-      title: "Branding & Identity",
-      image:
-        "https://www.psdstack.com/wp-content/uploads/2019/08/copyright-free-images-750x420.jpg",
+      title: "Digital Branding",
+      image: "/images/specialise/map-lying-wooden-table.jpg",
       description:
-        "Creating distinctive visual identities that communicate your brand's unique story and values.",
+        "Creating cohesive visual identities across all touchpoints that strengthen brand recognition and loyalty.",
     },
     {
-      title: "Websites & Digital Platforms",
+      title: "Environmental Graphics",
       image:
-        "https://www.techquintal.com/wp-content/uploads/2021/05/Information-Technology.jpg",
+        "/images/specialise/female-logo-designer-working-her-tablet-connected-laptop.jpg",
       description:
-        "Building responsive, user-focused websites and platforms that drive engagement and conversions.",
+        "Transforming physical spaces with impactful visual elements that communicate your brand story.",
     },
     {
-      title: "Digital Product Design",
+      title: "Visual Merchandising",
       image:
-        "https://media.istockphoto.com/id/1443560890/photo/digital-marketing-business-technology-concept-website-advertisement-email-social-media.jpg?s=170667a&w=is&k=20&c=y3DUF8i9zdLZ26-zqWDI8DeTgA0ge2bvizvPzfg1tbY=",
+        "/images/specialise/empty-trendy-clothing-store-selling-fashionable-items-shoes.jpg",
       description:
-        "Crafting intuitive digital products that solve real problems and delight users.",
+        "Developing eye-catching retail displays that optimize product presentation and increase sales.",
     },
     {
-      title: "eCommerce Experiences",
-      image:
-        "https://www.techquintal.com/wp-content/uploads/2021/05/Information-Technology.jpg",
+      title: "Experiential Design",
+      image: "/images/specialise/top-view-working-tools.jpg",
       description:
-        "Designing seamless shopping experiences that boost sales and customer satisfaction.",
+        "Building immersive brand environments that create meaningful connections with your target audience.",
     },
     // {
     //   title: "VR & AR Environments",
