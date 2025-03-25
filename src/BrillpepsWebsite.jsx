@@ -94,6 +94,21 @@ const BrillpepsWebsite = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const handleDownload = () => {
+    // Path to the PDF in the public folder
+    const pdfPath = "/brochure.pdf";
+
+    // Create a temporary anchor element
+    const link = document.createElement("a");
+    link.href = pdfPath;
+    link.download = "Brochure.pdf"; // Specify the filename for download
+
+    // Append to the body, click, and remove
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="min-h-screen bg-black text-white">
       <div className="max-w-8xl mx-auto">
@@ -223,7 +238,7 @@ const BrillpepsWebsite = () => {
 
               <div className="flex flex-wrap gap-6 justify-center md:justify-start">
                 <button
-                  onClick={() => scrollToSection(worksRef)}
+                  onClick={handleDownload}
                   className="px-8 py-4 bg-transparent border-2 border-blue-500 text-blue-500 text-lg font-medium rounded-lg hover:bg-blue-500 hover:text-black transition-colors duration-300"
                 >
                   Brochure
