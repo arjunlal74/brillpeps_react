@@ -360,7 +360,7 @@ const BrillpepsWebsite = () => {
               }`}
             >
               <div>
-                <h2 className="md:text-5xl font-bold mb-8">
+                <h2 className="text-5xl font-bold mb-8">
                   About Us
                   <span className="block h-1 w-16 bg-blue-500 mt-4"></span>
                 </h2>
