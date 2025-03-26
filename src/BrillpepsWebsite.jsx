@@ -3,6 +3,67 @@ import { useEffect, useState, useRef } from "react";
 import WeSpecializeIn from "./WeSpecializeIn";
 
 const BrillpepsWebsite = () => {
+  //Forms submission start
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    project: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState("");
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitMessage("");
+
+    // Replace with your actual Web3Forms Access Key
+    const accessKey = "68576572-c263-491a-aaa5-df217df3cf24";
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: formData.name,
+          email: formData.email,
+          message: formData.project,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitMessage("Message sent successfully!");
+        // Reset form after successful submission
+        setFormData({
+          name: "",
+          email: "",
+          project: "",
+        });
+      } else {
+        setSubmitMessage("Failed to send message. Please try again.");
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      setSubmitMessage("An error occurred. Please try again.");
+    }
+
+    setIsSubmitting(false);
+  };
+  //Forms submission end
   const images = [
     {
       src: "/images/SAM_0143.JPG",
@@ -299,11 +360,11 @@ const BrillpepsWebsite = () => {
               }`}
             >
               <div>
-                <h2 className="text-7xl font-bold mb-8">
+                <h2 className="md:text-5xl font-bold mb-8">
                   About Us
                   <span className="block h-1 w-16 bg-blue-500 mt-4"></span>
                 </h2>
-                <p className="text-2xl font-light mb-8">
+                <p className="text-lg font-light mb-8">
                   BRILLPEPS LLP is a full-service digital solutions company
                   combining technical expertise with creative excellence. From
                   traditional media campaigns including TV and radio commercials
@@ -373,10 +434,10 @@ const BrillpepsWebsite = () => {
                   : "opacity-0 translate-y-10"
               }`}
             >
-              <div className="md:col-span-3">
-                <h2 className="text-6xl font-bold mb-6 leading-tight">
+              <div className="md:col-span-3 text-left sm:text-center">
+                <h2 className="text-center text-5xl font-bold mb-6 leading-tight">
                   Creating Memorable Brand Experiences Since Our Inception
-                  <span className="block h-2 w-32 bg-blue-500 mt-6"></span>
+                  <span className="block h-2 w-32 bg-blue-500 mt-6 mx-auto ml-0 ml-auto"></span>
                 </h2>
               </div>
               <div className="md:col-span-2 flex flex-col justify-center">
@@ -406,7 +467,7 @@ const BrillpepsWebsite = () => {
                   : "opacity-0 translate-y-10"
               }`}
             >
-              <h2 className="text-5xl font-bold mb-10">
+              <h2 className="text-center text-5xl font-bold mb-10">
                 Crafting Breakthrough Brand Solutions For Diverse Clients
                 <span className="block h-2 w-48 bg-blue-500 mt-4 mx-auto"></span>
               </h2>
@@ -467,7 +528,7 @@ const BrillpepsWebsite = () => {
               }`}
             >
               <div className="flex justify-between items-center mb-16">
-                <h2 className="text-6xl font-bold">Our works</h2>
+                <h2 className="text-5xl font-bold">Our works</h2>
               </div>
 
               <div className="grid grid-cols-1 gap-24">
@@ -650,28 +711,44 @@ const BrillpepsWebsite = () => {
                     We're always looking for new challenges and exciting
                     projects. Drop us a line and let's start a conversation.
                   </p>
-
                   <div className="mt-12">
                     <p className="text-gray-400 text-xl mb-2">Email us at:</p>
                     <a
-                      href="mailto:hello@brillpeps.com"
+                      href="mailto:sales@brillpeps.com"
                       className="text-2xl text-blue-500 hover:underline transition-colors"
                     >
                       sales@brillpeps.com
                     </a>
 
                     <p className="text-gray-400 text-xl mt-8 mb-2">Call us:</p>
+
+                    {/* UAE Number */}
                     <a
-                      href="tel:+44123456789"
-                      className="text-2xl text-blue-500 hover:underline transition-colors"
+                      href="tel:+971501234567"
+                      className="text-2xl text-blue-500 hover:underline transition-colors block mb-4"
                     >
-                      +91-9188015979
+                      +971 56 142 9353 (UAE)
+                    </a>
+
+                    {/* India Numbers */}
+                    <a
+                      href="tel:+919188015979"
+                      className="text-2xl text-blue-500 hover:underline transition-colors block mb-4"
+                    >
+                      +91 91 888 48033 (India)
+                    </a>
+
+                    <a
+                      href="tel:+918765432109"
+                      className="text-2xl text-blue-500 hover:underline transition-colors block"
+                    >
+                      +91 87 654 32109 (India)
                     </a>
                   </div>
                 </div>
 
                 <div>
-                  <form className="space-y-6">
+                  <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
                       <label
                         htmlFor="name"
@@ -682,6 +759,9 @@ const BrillpepsWebsite = () => {
                       <input
                         type="text"
                         id="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
                         className="w-full bg-gray-900 border border-gray-800 rounded-lg p-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="Your name"
                       />
@@ -697,6 +777,9 @@ const BrillpepsWebsite = () => {
                       <input
                         type="email"
                         id="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
                         className="w-full bg-gray-900 border border-gray-800 rounded-lg p-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="Your email"
                       />
@@ -712,16 +795,32 @@ const BrillpepsWebsite = () => {
                       <textarea
                         id="project"
                         rows="5"
+                        value={formData.project}
+                        onChange={handleChange}
+                        required
                         className="w-full bg-gray-900 border border-gray-800 rounded-lg p-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="Tell us about your project"
                       ></textarea>
                     </div>
 
+                    {submitMessage && (
+                      <div
+                        className={`text-lg ${
+                          submitMessage.includes("successfully")
+                            ? "text-green-500"
+                            : "text-red-500"
+                        }`}
+                      >
+                        {submitMessage}
+                      </div>
+                    )}
+
                     <button
                       type="submit"
-                      className="mt-4 px-8 py-4 bg-blue-500 border-2 border-blue-500 text-black text-lg font-medium rounded-lg hover:bg-transparent hover:text-blue-500 transition-colors duration-300"
+                      disabled={isSubmitting}
+                      className="mt-4 px-8 py-4 bg-blue-500 border-2 border-blue-500 text-black text-lg font-medium rounded-lg hover:bg-transparent hover:text-blue-500 transition-colors duration-300 disabled:opacity-50"
                     >
-                      Send message
+                      {isSubmitting ? "Sending..." : "Send message"}
                     </button>
                   </form>
                 </div>
@@ -785,7 +884,7 @@ const BrillpepsWebsite = () => {
 
               {/* Socials & Copyright */}
               <div className="mt-8 pt-6 border-t border-gray-800 flex flex-col md:flex-row md:justify-between items-center text-sm">
-                <div className="flex space-x-4">
+                {/* <div className="flex space-x-4">
                   <a href="#" className="hover:text-blue-500 transition">
                     LinkedIn
                   </a>
@@ -795,7 +894,7 @@ const BrillpepsWebsite = () => {
                   <a href="#" className="hover:text-blue-500 transition">
                     Instagram
                   </a>
-                </div>
+                </div> */}
                 <p className="mt-4 md:mt-0">
                   &copy; 2025 Brillpeps. All rights reserved.
                 </p>
