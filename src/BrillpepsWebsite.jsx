@@ -26,7 +26,7 @@ const BrillpepsWebsite = () => {
     setSubmitMessage("");
 
     // Replace with your actual Web3Forms Access Key
-    const accessKey = "68576572-c263-491a-aaa5-df217df3cf24";
+    const accessKey = "ff0f4796-4015-4b71-8a6a-f7e1c5ff6c9f";
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -728,6 +728,13 @@ const BrillpepsWebsite = () => {
                       className="text-2xl text-blue-500 hover:underline transition-colors block mb-4"
                     >
                       +971 56 142 9353 (UAE)
+                    </a>
+
+                    <a
+                      href="tel:+971501234567"
+                      className="text-2xl text-blue-500 hover:underline transition-colors block mb-4"
+                    >
+                      +971 50 405 2267 (UAE)
                     </a>
 
                     {/* India Numbers */}
